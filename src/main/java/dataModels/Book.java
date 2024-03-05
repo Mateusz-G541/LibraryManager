@@ -10,7 +10,6 @@ import java.util.UUID;
 
 public class Book extends Item{
 
-
     private final String ISBN ;
     private final String author ;
 

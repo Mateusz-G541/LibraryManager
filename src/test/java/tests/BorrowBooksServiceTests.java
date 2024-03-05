@@ -17,12 +17,15 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public class BorrowBooksServiceTests {
+
     private User librarian;
     private Library library;
     private Book book;
+    BorrowItemService borrowItemService;
 
     @BeforeEach
     public void setup() {
+        borrowItemService = new BorrowItemService();
 
         librarian = User.builder()
                 .id(UUID.randomUUID())
@@ -48,16 +51,12 @@ public class BorrowBooksServiceTests {
                 .location(library.getId())
                 .isAvailable(true)
                 .build();
-
     }
 
     @DisplayName("Test positive borrowing of available book")
     @ParameterizedTest()
     @MethodSource("dataProviders.UsersDataProvider#provideUsersToPositiveBorrowBooks")
     public void shouldBePossibleToBorrowAvailableBooksTest(User expectedUser) {
-
-        BorrowItemService borrowItemService = new BorrowItemService();
-
         User borrower = expectedUser;
 
         boolean borrowResult = borrowItemService.borrow(borrower, librarian, book);
@@ -70,9 +69,6 @@ public class BorrowBooksServiceTests {
     @Test()
     @DisplayName("Test negative borrowing of book twice")
     public void shouldNotBePossibleToBorrowBookBeforeItIsReturnedTest() {
-
-        BorrowItemService borrowItemService = new BorrowItemService();
-
         User borrower = User.builder()
                 .id(UUID.randomUUID())
                 .firstName("John")
@@ -100,9 +96,6 @@ public class BorrowBooksServiceTests {
     @ParameterizedTest()
     @MethodSource("dataProviders.UsersDataProvider#provideUsersToNegativeBorrowBooks")
     public void shouldNotBePossibleToBorrowMoreThanDefinedInRequirementsTest(User expectedUser) {
-
-        BorrowItemService borrowItemService = new BorrowItemService();
-
         User borrower = expectedUser;
 
         boolean borrowResult = borrowItemService.borrow(borrower, librarian, book);
@@ -115,9 +108,6 @@ public class BorrowBooksServiceTests {
     @ParameterizedTest()
     @MethodSource("dataProviders.UsersDataProvider#provideUsersNotAllowedToBorrowBooks")
     public void shouldNotBePossibleToBorrowWhenUserNotAllowed(User expectedUser) {
-
-        BorrowItemService borrowItemService = new BorrowItemService();
-
         User borrower = expectedUser;
 
         boolean borrowResult = borrowItemService.borrow(borrower, librarian, book);

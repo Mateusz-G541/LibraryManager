@@ -15,5 +15,4 @@ public class Loan {
     private LocalDateTime borrowedAt;
     private LocalDateTime returnedAt;
     private LocalDateTime deletedAt;
-
 }

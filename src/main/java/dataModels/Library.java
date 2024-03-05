@@ -9,6 +9,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 public class Library {
+
     private UUID id;
     private String address;
 }
