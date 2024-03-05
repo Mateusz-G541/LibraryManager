@@ -23,6 +23,7 @@ public class BorrowBooksServiceTests {
 
     @BeforeEach
     public void setup() {
+
         librarian = User.builder()
                 .id(UUID.randomUUID())
                 .firstName("John")
@@ -54,6 +55,7 @@ public class BorrowBooksServiceTests {
     @ParameterizedTest()
     @MethodSource("dataProviders.UsersDataProvider#provideUsersToPositiveBorrowBooks")
     public void shouldBePossibleToBorrowAvailableBooksTest(User expectedUser) {
+
         BorrowItemService borrowItemService = new BorrowItemService();
 
         User borrower = expectedUser;
@@ -68,7 +70,6 @@ public class BorrowBooksServiceTests {
     @Test()
     @DisplayName("Test negative borrowing of book twice")
     public void shouldNotBePossibleToBorrowBookBeforeItIsReturnedTest() {
-
 
         BorrowItemService borrowItemService = new BorrowItemService();
 
@@ -97,7 +98,6 @@ public class BorrowBooksServiceTests {
     @DisplayName("Test negative borrowing forbidden number of books")
     @ParameterizedTest()
     @MethodSource("dataProviders.UsersDataProvider#provideUsersToNegativeBorrowBooks")
-
     public void shouldNotBePossibleToBorrowMoreThanFourteenBooksToLecturer(User expectedUser) {
 
         BorrowItemService borrowItemService = new BorrowItemService();
