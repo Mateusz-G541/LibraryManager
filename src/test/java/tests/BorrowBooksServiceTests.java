@@ -98,7 +98,7 @@ public class BorrowBooksServiceTests {
     @DisplayName("Test negative borrowing forbidden number of books")
     @ParameterizedTest()
     @MethodSource("dataProviders.UsersDataProvider#provideUsersToNegativeBorrowBooks")
-    public void shouldNotBePossibleToBorrowMoreThanFourteenBooksToLecturer(User expectedUser) {
+    public void shouldNotBePossibleToBorrowMoreThanDefinedInRequirementsTest(User expectedUser) {
 
         BorrowItemService borrowItemService = new BorrowItemService();
 
@@ -108,5 +108,20 @@ public class BorrowBooksServiceTests {
 
         Assertions.assertFalse(borrowResult, String.format("Book with id %s should not be borrowed when user with type %s already had %s books borrowed books",
                 borrower.getId(), borrower.getUserType().name(), String.valueOf(borrower.getAlreadyBorrowedBooks())));
+    }
+
+    @DisplayName("Test negative borrowing forbidden when user is not allowed to borrow a book")
+    @ParameterizedTest()
+    @MethodSource("dataProviders.UsersDataProvider#provideUsersNotAllowedToBorrowBooks")
+    public void shouldNotBePossibleToBorrowWhenUserNotAllowed(User expectedUser) {
+
+        BorrowItemService borrowItemService = new BorrowItemService();
+
+        User borrower = expectedUser;
+
+        boolean borrowResult = borrowItemService.borrow(borrower, librarian, book);
+
+        Assertions.assertFalse(borrowResult, String.format("Book with id %s should not be borrowed when user with type ids is not allowed",
+                borrower.getId()));
     }
 }

@@ -9,7 +9,7 @@ public class BorrowItemService implements Borrowable {
     @Override
     public boolean borrow(User user, User lender, Item item) {
 
-        if (user.getAlreadyBorrowedBooks() >= 14 || item.isAvailable() != true) {
+        if (user.getAlreadyBorrowedBooks() >= 14 || item.isAvailable() != true || user.isAllowedToBorrow() != true) {
             return false;
         } else if (user.getUserType() == UserType.LECTURER && item.isAvailable()) {
             item.setAvailable(false);

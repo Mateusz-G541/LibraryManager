@@ -31,4 +31,6 @@ public class User implements Serializable {
     private LocalDate birthDate;
 
     private int alreadyBorrowedBooks;
+
+    private boolean isAllowedToBorrow;
 }

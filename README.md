@@ -24,6 +24,7 @@
 - REQ015: The librarian should be able to track the number of available copies of each book in the library collection, including copies borrowed and available for loan. Books can be searched by ISBN, Author, or Title - without regex implementation.
 - REQ016: The system should handle edge cases, such as the lack of available copies of a book, in which case the user should be able to sign up for a waiting list for that book and receive notifications when the book becomes available.
 - REQ017: The system should automatically block the ability to borrow new books for users who have unpaid book hold fees above a certain limit (e.g., 30 days overdue).
+- REQ018: The system should lock the user, when he exceeds the deadlines for returning books too often, the maximum number of delays is 3 times up to 1 month or once up to six months
 
 ## Non-Functional Requirements:
 - The system should be able to load data into the database from a CSV file.
