@@ -82,6 +82,7 @@ public class BorrowBooksServiceTests {
                 .postalCode("12345")
                 .userType(UserType.STUDENT)
                 .alreadyBorrowedBooks(1)
+                .isAllowedToBorrow(true)
                 .birthDate(LocalDate.of(1999, 1, 1))
                 .build();
 
