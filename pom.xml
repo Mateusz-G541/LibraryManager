@@ -16,7 +16,6 @@
         <lombok.version>1.18.30</lombok.version>
     </properties>
 
-
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -42,4 +41,5 @@
             <version>${lombok.version}</version>
         </dependency>
     </dependencies>
+
 </project>

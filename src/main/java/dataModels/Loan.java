@@ -21,6 +21,7 @@ public class Loan {
     private LocalDateTime returnedAt;
     private LocalDateTime deletedAt;
     private BigDecimal punishmentAmount;
+    private Library library;
 
     public Optional<BigDecimal> getPunishmentAmount() {
         return Optional.ofNullable(punishmentAmount);

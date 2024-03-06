@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class BorrowBooksServiceTests {
+public class BorrowBooksServiceTest {
 
     private User librarian;
     private Library library;
@@ -51,6 +51,7 @@ public class BorrowBooksServiceTests {
                 .location(library.getId())
                 .isAvailable(true)
                 .build();
+
     }
 
     @DisplayName("Test positive borrowing of available book")
@@ -59,7 +60,7 @@ public class BorrowBooksServiceTests {
     public void shouldBePossibleToBorrowAvailableBooksTest(User expectedUser) {
         User borrower = expectedUser;
 
-        boolean borrowResult = borrowItemService.borrowItem(borrower, librarian, book);
+        boolean borrowResult = borrowItemService.borrowItem(borrower, librarian, book, library);
 
         Assertions.assertTrue(borrowResult, String.format("There was an error when borrowing book with id %s by borrower of type %s with id %s and " +
                 "it was lending by librarian with id %s", book.getId(), borrower.getId(), borrower.getUserType(), librarian.getId()));
@@ -82,12 +83,12 @@ public class BorrowBooksServiceTests {
                 .birthDate(LocalDate.of(1999, 1, 1))
                 .build();
 
-        boolean borrowResult = borrowItemService.borrowItem(borrower, librarian, book);
+        boolean borrowResult = borrowItemService.borrowItem(borrower, librarian, book, library);
 
         Assertions.assertTrue(borrowResult, String.format("There was an error when borrowing book with id %s by borrower of type %s with id %s and " +
                 "it was lending by librarian with id %s", book.getId(), borrower.getId(), borrower.getUserType(), librarian.getId()));
 
-        boolean borrowResultAfter = borrowItemService.borrowItem(borrower, librarian, book);
+        boolean borrowResultAfter = borrowItemService.borrowItem(borrower, librarian, book, library);
 
         Assertions.assertFalse(borrowResultAfter, "Book with id %s should not be borrowed twice");
     }
@@ -98,7 +99,7 @@ public class BorrowBooksServiceTests {
     public void shouldNotBePossibleToBorrowMoreThanDefinedInRequirementsTest(User expectedUser) {
         User borrower = expectedUser;
 
-        boolean borrowResult = borrowItemService.borrowItem(borrower, librarian, book);
+        boolean borrowResult = borrowItemService.borrowItem(borrower, librarian, book, library);
 
         Assertions.assertFalse(borrowResult, String.format("Book with id %s should not be borrowed when user with type %s already had %s books borrowed books",
                 borrower.getId(), borrower.getUserType().name(), String.valueOf(borrower.getAlreadyBorrowedBooks())));
@@ -110,7 +111,7 @@ public class BorrowBooksServiceTests {
     public void shouldNotBePossibleToBorrowWhenUserNotAllowed(User expectedUser) {
         User borrower = expectedUser;
 
-        boolean borrowResult = borrowItemService.borrowItem(borrower, librarian, book);
+        boolean borrowResult = borrowItemService.borrowItem(borrower, librarian, book, library);
 
         Assertions.assertFalse(borrowResult, String.format("Book with id %s should not be borrowed when user with type ids is not allowed",
                 borrower.getId()));
