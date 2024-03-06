@@ -11,7 +11,7 @@ public class BorrowItemService implements Borrowable {
     Config config = Config.getInstance();
 
     @Override
-    public boolean borrow(User user, User lender, Item item) {
+    public boolean borrowItem(User user, User lender, Item item) {
 
         if (user.getAlreadyBorrowedBooks() >= Integer.valueOf(config.getProperty("lecturer_limit")) || !item.isAvailable() || !user.isAllowedToBorrow()) {
             return false;

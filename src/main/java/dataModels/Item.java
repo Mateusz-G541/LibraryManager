@@ -18,4 +18,5 @@ public abstract class Item  {
     private BigDecimal rating;
     private boolean isAvailable;
     private int amount;
+
 }

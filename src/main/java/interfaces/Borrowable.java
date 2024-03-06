@@ -5,5 +5,5 @@ import dataModels.User;
 
 public interface Borrowable {
 
-    boolean borrow(User user, User lender, Item item);
+    boolean borrowItem(User user, User lender, Item item);
 }
