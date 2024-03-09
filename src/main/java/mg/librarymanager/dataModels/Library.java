@@ -1,4 +1,4 @@
-package dataModels;
+package mg.librarymanager.dataModels;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

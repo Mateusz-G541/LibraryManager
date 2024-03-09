@@ -1,11 +1,11 @@
 package tests;
 
-import dataModels.Loan;
+import mg.librarymanager.dataModels.Loan;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import services.ReturnItemService;
+import mg.librarymanager.services.ReturnItemService;
 
 class ReturnItemServiceTest {
 
@@ -31,8 +31,4 @@ class ReturnItemServiceTest {
     public void shouldNotBePossibleToReturnBookWithActivePunishmentTest(Loan loan){
         Assertions.assertFalse(returnItemService.returnItem(loan));
     }
-
-
-
-
 }

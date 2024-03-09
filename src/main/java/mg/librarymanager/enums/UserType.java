@@ -1,4 +1,4 @@
-package helpers.enums;
+package mg.librarymanager.enums;
 
 public enum UserType {
 

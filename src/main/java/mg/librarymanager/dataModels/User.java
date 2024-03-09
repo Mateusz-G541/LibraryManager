@@ -1,6 +1,6 @@
-package dataModels;
+package mg.librarymanager.dataModels;
 
-import helpers.enums.UserType;
+import mg.librarymanager.enums.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package dataProviders;
 
-import dataModels.User;
-import helpers.enums.UserType;
+import mg.librarymanager.dataModels.User;
+import mg.librarymanager.enums.UserType;
 
 import java.time.LocalDate;
 import java.util.UUID;

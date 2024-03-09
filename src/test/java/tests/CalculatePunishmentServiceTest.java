@@ -2,30 +2,30 @@ package tests;
 
 import mg.librarymanager.dataModels.Book;
 import mg.librarymanager.dataModels.Library;
+import mg.librarymanager.dataModels.Loan;
 import mg.librarymanager.dataModels.User;
 import mg.librarymanager.enums.LoanStatus;
 import mg.librarymanager.enums.UserType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import mg.librarymanager.services.CreateLoanService;
+import mg.librarymanager.services.CalculatePunishmentService;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class CreateLoanServiceTest {
+public class CalculatePunishmentServiceTest {
     private User librarian;
     private User borrower;
     private Library library;
     private Book book;
-    CreateLoanService createLoanService;
+    private Loan loan;
+    private CalculatePunishmentService calculatePunishmentService = new CalculatePunishmentService();
 
     @BeforeEach
     public void setup() {
-        createLoanService = new CreateLoanService();
-
         librarian = User.builder()
                 .id(UUID.randomUUID())
                 .firstName("John")
@@ -65,15 +65,33 @@ public class CreateLoanServiceTest {
                 .build();
     }
 
-    @DisplayName("Test check that is loan correctly created with all valid data.")
     @Test
-    public void shouldCorrectlyCreateLoanWithValidDataTest() {
-        var loan = createLoanService.createLoan(book, borrower, librarian, library);
+    public void punishmentShouldBeEqualToZeroWhenItemReturnedBefore31DaysTest() {
+        loan = Loan.builder()
+                .id(UUID.randomUUID())
+                .lentBy(librarian.getId())
+                .borrowedBy(borrower.getId())
+                .item(book)
+                .loanStatus(LoanStatus.ACTIVE)
+                .borrowedAt(LocalDateTime.now().minusDays(30))
+                .returnedAt(LocalDateTime.now())
+                .build();
 
-        Assertions.assertEquals(loan.getLoanStatus(), LoanStatus.ACTIVE);
-        Assertions.assertEquals(loan.getItem(), book);
-        Assertions.assertEquals(loan.getLentBy(), librarian.getId());
-        Assertions.assertEquals(loan.getBorrowedBy(), borrower.getId());
+        Assertions.assertEquals(BigDecimal.ZERO, calculatePunishmentService.calculatePunishmentAmount(loan));
     }
 
+    @Test
+    public void checkPunishmentWhenBetween31And180DaysTest() {
+        loan = Loan.builder()
+                .id(UUID.randomUUID())
+                .lentBy(librarian.getId())
+                .borrowedBy(borrower.getId())
+                .item(book)
+                .loanStatus(LoanStatus.ACTIVE)
+                .borrowedAt(LocalDateTime.now().minusDays(30))
+                .returnedAt(LocalDateTime.now())
+                .build();
+
+        Assertions.assertEquals(BigDecimal.ZERO, calculatePunishmentService.calculatePunishmentAmount(loan));
+    }
 }

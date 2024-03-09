@@ -1,6 +1,6 @@
-package dataModels;
+package mg.librarymanager.dataModels;
 
-import helpers.enums.LoanStatus;
+import mg.librarymanager.enums.LoanStatus;
 import lombok.Builder;
 import lombok.Getter;
 

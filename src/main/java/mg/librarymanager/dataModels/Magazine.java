@@ -1,4 +1,4 @@
-package dataModels;
+package mg.librarymanager.dataModels;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

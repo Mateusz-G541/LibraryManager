@@ -1,16 +1,16 @@
 package tests;
 
-import dataModels.Book;
-import dataModels.Library;
-import dataModels.User;
-import helpers.enums.UserType;
+import mg.librarymanager.dataModels.Book;
+import mg.librarymanager.dataModels.Library;
+import mg.librarymanager.dataModels.User;
+import mg.librarymanager.enums.UserType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import services.BorrowItemService;
+import mg.librarymanager.services.BorrowItemService;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

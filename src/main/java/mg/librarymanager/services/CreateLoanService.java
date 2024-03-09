@@ -1,11 +1,11 @@
-package services;
+package mg.librarymanager.services;
 
-import dataModels.Item;
-import dataModels.Library;
-import dataModels.Loan;
-import dataModels.User;
-import helpers.enums.LoanStatus;
-import interfaces.Loanable;
+import mg.librarymanager.dataModels.Item;
+import mg.librarymanager.dataModels.Library;
+import mg.librarymanager.dataModels.Loan;
+import mg.librarymanager.dataModels.User;
+import mg.librarymanager.enums.LoanStatus;
+import mg.librarymanager.interfaces.Loanable;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

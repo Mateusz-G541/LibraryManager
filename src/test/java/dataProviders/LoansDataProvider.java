@@ -1,16 +1,15 @@
 package dataProviders;
 
-import dataModels.Book;
-import dataModels.Library;
-import dataModels.Loan;
-import dataModels.User;
-import helpers.enums.LoanStatus;
-import helpers.enums.UserType;
+import mg.librarymanager.dataModels.Book;
+import mg.librarymanager.dataModels.Library;
+import mg.librarymanager.dataModels.Loan;
+import mg.librarymanager.dataModels.User;
+import mg.librarymanager.enums.LoanStatus;
+import mg.librarymanager.enums.UserType;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Stream;
 

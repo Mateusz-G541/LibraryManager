@@ -1,9 +1,8 @@
-package services;
+package mg.librarymanager.services;
 
-import configuration.Config;
-import dataModels.Loan;
-import helpers.enums.LoanStatus;
-import interfaces.Returnable;
+import mg.librarymanager.dataModels.Loan;
+import mg.librarymanager.enums.LoanStatus;
+import mg.librarymanager.interfaces.Returnable;
 
 import java.math.BigDecimal;
 
