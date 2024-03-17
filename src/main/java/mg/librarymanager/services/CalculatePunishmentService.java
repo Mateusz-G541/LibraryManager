@@ -3,10 +3,13 @@ package mg.librarymanager.services;
 import mg.librarymanager.configuration.Config;
 import mg.librarymanager.dataModels.Loan;
 import mg.librarymanager.interfaces.Punishable;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.temporal.ChronoUnit;
 
+@Component
 public class CalculatePunishmentService implements Punishable {
 
     @Override

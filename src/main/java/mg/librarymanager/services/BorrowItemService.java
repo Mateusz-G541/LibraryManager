@@ -6,7 +6,10 @@ import mg.librarymanager.dataModels.Library;
 import mg.librarymanager.dataModels.User;
 import mg.librarymanager.enums.UserType;
 import mg.librarymanager.interfaces.Borrowable;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+@Component
 public class BorrowItemService implements Borrowable {
 
     private Config config = Config.getInstance();
